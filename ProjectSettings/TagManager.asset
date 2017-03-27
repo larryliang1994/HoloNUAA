@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - MenuItem
+  - MenuItem_Move
+  - MenuItem_Rotate
+  - MenuItem_Scale
+  - MenuItem_Restore
+  - MenuItem_Remove
+  - MenuItem_Move_Back
+  - MenuItem_Rotate_Back
+  - MenuItem_Scale_Back
+  - MenuItem_Restore_Back
+  - MenuItem_Remove_Back
+  - MenuItem_Location
+  - MenuItem_Platform
+  - MenuItem_Others
+  - MenuItem_About
+  - MenuItem_Location_Back
+  - MenuItem_Platform_Back
+  - MenuItem_Others_Back
+  - MenuItem_About_Back
+  - Platform
+  - Menu_Main
+  - MenuItem_Sticker
+  - MenuItem_Search
+  - MenuItem_Sticker_Back
+  - MenuItem_Search_Back
+  - Tip
+  - Windows_Info
+  - CancelButton_About
+  - CancelButton_About_Back
+  - About
+  - Managers
+  - ConfirmButton_Input
+  - ConfirmButton_Input_Back
+  - CancelButton_Input
+  - CancelButton_Input_Back
+  - Building1
+  - Building1_Structure
+  - Building2
+  - Library
+  - Gym
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 1
+  - 2
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
