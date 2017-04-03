@@ -11,7 +11,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject inputDialogContentObject;
     public GameObject inputDialogTitleObject;
 
-    public InputDialogState inputDialogState;
+    public InputDialogState InputDialogState;
 
     private TextMesh inputDialogContentText;
     private TextMesh inputDialogTitleText;

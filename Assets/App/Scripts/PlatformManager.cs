@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity;
 
 public class PlatformManager : MonoBehaviour
 {
@@ -10,7 +11,14 @@ public class PlatformManager : MonoBehaviour
     public GameObject library;
     public GameObject gym;
     public GameObject building1Structure;
+    public GameObject libraryStructure;
     public GameObject charactor;
+
+    public GameObject platformIndicator;
+    public GameObject building1StructureIndicator;
+    public GameObject libraryStructureIndicator;
+
+    public static UserPosition UserCurrentPosition;
 
     // Use this for initialization
     void Start ()
@@ -24,7 +32,7 @@ public class PlatformManager : MonoBehaviour
 
     public void SetVisibility(bool visible)
     {
-        this.gameObject.SetActive(visible);
+        platformIndicator.GetComponent<DirectionIndicator>().Active = visible;
 
         this.transform.position = Camera.main.transform.position + Camera.main.transform.forward.normalized * 1.5f
             + new Vector3(0, -0.5f, 0);
@@ -40,18 +48,68 @@ public class PlatformManager : MonoBehaviour
             this.transform.rotation = Quaternion.LookRotation(-directionToTarget);
         }
 
+        SetUserPosition();
+
         MeshRenderer[] marr = this.GetComponentsInChildren<MeshRenderer>(true);
+        foreach (MeshRenderer m in marr)
+        {
+            m.enabled = visible;
+        }
+
+        SetBuilding1StructureVisibility(false);
+        SetLibraryStructureVisibility(false);
+
+        this.gameObject.SetActive(visible);
+    }
+
+    public void SetUserPosition()
+    {
+        Vector3 userPosition = new Vector3();
+        string tip = "";
+
+        switch(UserCurrentPosition)
+        {
+            case UserPosition.Building1:
+                userPosition = this.transform.position + new Vector3(-0.22f, 0.0f, -0.443f);
+                tip = "主楼";
+                break;
+
+            case UserPosition.Gymnastic:
+                userPosition = this.transform.position + new Vector3(-0.524f, 0.0f, -0.053f);
+                tip = "体育馆";
+                break;
+
+            case UserPosition.Library:
+                userPosition = this.transform.position + new Vector3(0.541f, 0.0f, -0.053f);
+                tip = "图书馆";
+                break;
+        }
+
+        charactor.transform.position = userPosition;
+
+        //MainScreenManager.Instance.SetLocationTip(tip);
+    }
+
+    public void SetBuilding1StructureVisibility(bool visible)
+    {
+        building1StructureIndicator.GetComponent<DirectionIndicator>().Active = visible;
+
+        building1Structure.SetActive(visible);
+
+        MeshRenderer[] marr = building1Structure.GetComponentsInChildren<MeshRenderer>(true);
         foreach (MeshRenderer m in marr)
         {
             m.enabled = visible;
         }
     }
 
-    public void SetBuilding1StructureVisibility(bool visible)
+    public void SetLibraryStructureVisibility(bool visible)
     {
-        building1Structure.SetActive(visible);
+        libraryStructureIndicator.GetComponent<DirectionIndicator>().Active = visible;
 
-        MeshRenderer[] marr = building1Structure.GetComponentsInChildren<MeshRenderer>(true);
+        libraryStructure.SetActive(visible);
+
+        MeshRenderer[] marr = libraryStructure.GetComponentsInChildren<MeshRenderer>(true);
         foreach (MeshRenderer m in marr)
         {
             m.enabled = visible;
@@ -89,15 +147,12 @@ public class PlatformManager : MonoBehaviour
                 c.gameObject.tag = "Gym";
             }
         }
-
-        foreach (Transform child in building1Structure.transform)
-        {
-            child.gameObject.tag = "Building1_Structure";
-
-            foreach (Transform c in child.transform)
-            {
-                c.gameObject.tag = "Building1_Structure";
-            }
-        }
     }
 }
+
+public enum UserPosition
+{
+    Library = 0,
+    Building1,
+    Gymnastic
+};

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MainScreenManager : MonoBehaviour
 {
     public static MainScreenManager Instance { get; private set; }
+    public static bool DotRunning = true;
 
     public Text menuTipObject;
     public Text locationTipObject;
@@ -64,7 +65,7 @@ public class MainScreenManager : MonoBehaviour
                     menuTipObject.text = "说“hide menu”以隐藏主菜单";
                     break;
 
-                case ScreenTipContent.HideNabigation:
+                case ScreenTipContent.HideNavigation:
                     menuTipObject.text = "说“hide navigation”以隐藏导航";
                     break;
             }
@@ -84,5 +85,5 @@ public enum ScreenTipContent
 {
     ShowMenu = 0,
     HideMenu,
-    HideNabigation
+    HideNavigation
 }

@@ -16,7 +16,7 @@ public class CursorClicked : MonoBehaviour
         switch (GazeGestureManager.Instance.FocusedObject.tag)
         {
             case "MenuItem_Sticker":
-                MainMenuManager.Instance.inputDialogState = InputDialogState.Sticker;
+                MainMenuManager.Instance.InputDialogState = InputDialogState.Sticker;
                 MainMenuManager.Instance.SetInputDialogTitle("留言条");
                 MainMenuManager.Instance.SetInputDialogContent("请说出留言条内容...");
                 MainMenuManager.Instance.SetInputDialogVisibility(true);
@@ -29,7 +29,7 @@ public class CursorClicked : MonoBehaviour
                 break;
 
             case "MenuItem_Search":
-                MainMenuManager.Instance.inputDialogState = InputDialogState.Search;
+                MainMenuManager.Instance.InputDialogState = InputDialogState.Search;
                 MainMenuManager.Instance.SetInputDialogTitle("查找图书");
                 MainMenuManager.Instance.SetInputDialogContent("请说出图书编号...");
                 MainMenuManager.Instance.SetInputDialogVisibility(true);
@@ -57,16 +57,18 @@ public class CursorClicked : MonoBehaviour
 
                 MainScreenManager.Instance.SetScreenTip(ScreenTipContent.ShowMenu);
 
-                if (MainMenuManager.Instance.inputDialogState == InputDialogState.Sticker)
+                if (MainMenuManager.Instance.InputDialogState == InputDialogState.Sticker)
                 {
                     ImageTargetManager.Instance.SetStickerContent(MainMenuManager.Instance.GetInputDialogContent());
 
                     CursorManager.Instance.SetTipText("点击一下开始识别并粘贴");
+                    CursorManager.Instance.TipBusy = true;
 
                     // Set up a GestureRecognizer to detect Select gestures.
                     recognizer = new GestureRecognizer();
                     recognizer.TappedEvent += (source, tapCount, ray) =>
                     {
+                        CursorManager.Instance.TipBusy = false;
                         CursorManager.Instance.SetTipText("");
 
                         ImageTargetManager.Instance.BuildNewTarget();
@@ -75,7 +77,13 @@ public class CursorClicked : MonoBehaviour
                 }
                 else
                 {
-                    MainScreenManager.Instance.SetScreenTip(ScreenTipContent.HideNabigation);
+                    MainScreenManager.Instance.SetScreenTip(ScreenTipContent.HideNavigation);
+
+                    string iid = MainMenuManager.Instance.GetInputDialogContent();
+                    Debug.Log(iid);
+                    string id = "TM001";
+
+                    NavigationManager.Instance.StartNavigation(id);
                 }
                 
                 break;
@@ -85,6 +93,7 @@ public class CursorClicked : MonoBehaviour
                 break;
 
             case "Library":
+                PlatformManager.Instance.SetLibraryStructureVisibility(true);
                 break;
 
             case "Gym":
@@ -92,6 +101,10 @@ public class CursorClicked : MonoBehaviour
 
             case "Building1_Structure":
                 PlatformManager.Instance.SetBuilding1StructureVisibility(false);
+                break;
+
+            case "Library_Structure":
+                PlatformManager.Instance.SetLibraryStructureVisibility(false);
                 break;
 
             default:

@@ -11,5 +11,7 @@ EditorBuildSettings:
     path: Assets/Scenes/HoloNUAA.unity
   - enabled: 0
     path: Assets/HoloToolkit-Examples/GameControllerManipulator/GameControllerManipulatorTest.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/App/Scenes/HoloNUAA.unity
+  - enabled: 1
+    path: Assets/App/Scenes/HoloNUAA_Vuforia.unity

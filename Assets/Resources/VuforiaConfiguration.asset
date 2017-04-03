@@ -14,7 +14,7 @@ MonoBehaviour:
   vuforia:
     vuforiaLicenseKey: AdoupT//////AAAAGSJMTonywEAtk27PsfDePr5mwEhl+FmUFsjNgzEwU065yj4uyb+mkJkJdr+3sjFolBCgp3XiEKbSAIptHRtei6SHDkO+xpP1Zye5u1ZT2kf04uXQrYhfuL/ysifnSludkLa+3l9mMVLhveiMlUfWdL4ZuNFalc4CDSmu70+uICdeVwh4qpBiCEysR7bMk/36t8w0ZnRkqiUUXheuNewXQbhsdk/VRGjr+9g7J7flJhJwo6PflmEgmGqsFUXgaWOTv46JN9ZgaSGuCVvg/vGtxD1ZnmXQp0K2nSB5vZORPzMfjtDm539SF4RD21PhrhSNSWnTA3QgRFVhcHMntGNp/ixr8WnqP2a7ncqTofRitbXi
     delayedInitialization: 0
-    cameraDeviceModeSetting: -3
+    cameraDeviceModeSetting: -1
     maxSimultaneousImageTargets: 3
     maxSimultaneousObjectTargets: 3
     useDelayedLoadingObjectTargets: 0
@@ -43,8 +43,10 @@ MonoBehaviour:
       FieldOfView: {x: 0, y: 0, z: 0, w: 0}
       ContainsMagnet: 0
   databaseLoad:
-    dataSetsToLoad: []
-    dataSetsToActivate: []
+    dataSetsToLoad:
+    - MyDB
+    dataSetsToActivate:
+    - MyDB
   videoBackground:
     clippingMode: 0
     matteShader: {fileID: 4800000, guid: f84e93cca971cda47a225f4c6a4156c9, type: 3}

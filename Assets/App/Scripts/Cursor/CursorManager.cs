@@ -8,6 +8,7 @@ public class CursorManager : MonoBehaviour
 
     public GameObject tipObject;
 
+    public bool TipBusy = false;
     private TextMesh tipText;
 
     // Use this for initialization
@@ -16,7 +17,7 @@ public class CursorManager : MonoBehaviour
         Instance = this;
 
         tipText = tipObject.GetComponent<TextMesh>();
-        tipText.text = "";
+        
     }
 
     public string GetTipText()
@@ -26,7 +27,7 @@ public class CursorManager : MonoBehaviour
 
     public void SetTipText(string text)
     {
-        if (tipText != null)
+        if (tipText != null && !TipBusy)
         {
             tipText.text = text;
         }

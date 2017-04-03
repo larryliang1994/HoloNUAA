@@ -48,7 +48,7 @@ public class CursorFocused : MonoBehaviour
 
             case "CancelButton_Input": focusedTag = "CancelButton_Input_Back"; break;
 
-            case "ConfirmButton_Input": focusedTag = "ConfirmButton_Input_Back"; break;
+            case "ConfirmButton_Input": focusedTag = "ConfirmButton_Input_Back";    break;
 
             case "Building1":
             case "Library":
@@ -57,6 +57,7 @@ public class CursorFocused : MonoBehaviour
                 return;
 
             case "Building1_Structure":
+            case "Library_Structure":
                 CursorManager.Instance.SetTipText("点击关闭");
                 return;
 
