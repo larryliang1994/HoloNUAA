@@ -51,9 +51,15 @@ public class CursorFocused : MonoBehaviour
             case "ConfirmButton_Input": focusedTag = "ConfirmButton_Input_Back";    break;
 
             case "Building1":
+                CursorManager.Instance.SetTipText("南航主楼");
+                return;
+
             case "Library":
+                CursorManager.Instance.SetTipText("图书馆");
+                return;
+
             case "Gym":
-                CursorManager.Instance.SetTipText("点击查看更多信息");
+                CursorManager.Instance.SetTipText("体育馆");
                 return;
 
             case "Building1_Structure":

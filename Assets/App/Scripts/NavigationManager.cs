@@ -42,7 +42,7 @@ public class NavigationManager : MonoBehaviour
             {
                 float startPointX = points[i].x < points[i + 1].x ? points[i].x : points[i + 1].x;
 
-                for (int j = 1; j < Mathf.Abs(points[i + 1].x - points[i].x) / Scale; j++)
+                for (float j = 0; j < Mathf.Abs(points[i + 1].x - points[i].x) / Scale; j += 0.2f)
                 {
                     AddDot(new Vector3(startPointX + j * Scale, points[i].y, points[i].z));
                 }
@@ -51,7 +51,7 @@ public class NavigationManager : MonoBehaviour
             {
                 float startPointY = points[i].y < points[i + 1].y ? points[i].y : points[i + 1].y;
 
-                for (int j = 1; j < Mathf.Abs(points[i + 1].y - points[i].y) / Scale; j++)
+                for (float j = 0; j < Mathf.Abs(points[i + 1].y - points[i].y) / Scale; j += 0.2f)
                 {
                     AddDot(new Vector3(points[i].x, points[i].y + j * Scale, points[i].z));
                 }
@@ -60,7 +60,7 @@ public class NavigationManager : MonoBehaviour
             {
                 float startPointZ = points[i].z < points[i + 1].z ? points[i].z : points[i + 1].z;
 
-                for (int j = 1; j < Mathf.Abs(points[i + 1].z - points[i].z) / Scale; j++)
+                for (float j = 0; j < Mathf.Abs(points[i + 1].z - points[i].z) / Scale; j += 0.2f)
                 {
                     AddDot(new Vector3(points[i].x, points[i].y, points[i].z + j * Scale));
                 }

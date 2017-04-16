@@ -18,6 +18,8 @@ public class PlatformManager : MonoBehaviour
     public GameObject building1StructureIndicator;
     public GameObject libraryStructureIndicator;
 
+    private IEnumerator coroutine;
+
     public static UserPosition UserCurrentPosition;
 
     // Use this for initialization
@@ -32,7 +34,7 @@ public class PlatformManager : MonoBehaviour
 
     public void SetVisibility(bool visible)
     {
-        platformIndicator.GetComponent<DirectionIndicator>().Active = visible;
+        //platformIndicator.GetComponent<DirectionIndicator>().Active = visible;
 
         this.transform.position = Camera.main.transform.position + Camera.main.transform.forward.normalized * 1.5f
             + new Vector3(0, -0.5f, 0);
@@ -62,6 +64,32 @@ public class PlatformManager : MonoBehaviour
         this.gameObject.SetActive(visible);
     }
 
+    private IEnumerator DirectionIndicatorAppear(DirectionIndicator indicator)
+    {
+        indicator.Active = true;
+
+        int waitTime = 0;
+
+        while (waitTime < 2)
+        {
+            waitTime++;
+
+            if (waitTime < 2)
+            {
+                yield return new WaitForSeconds(1);
+            }
+            else
+            {
+                Debug.Log(waitTime);
+
+                //indicator.Active = false;
+                //indicator.gameObject.SetActive(false);
+
+                //StopCoroutine(coroutine);
+            }
+        } 
+    }
+
     public void SetUserPosition()
     {
         Vector3 userPosition = new Vector3();
@@ -83,6 +111,11 @@ public class PlatformManager : MonoBehaviour
                 userPosition = this.transform.position + new Vector3(0.541f, 0.0f, -0.053f);
                 tip = "图书馆";
                 break;
+
+            case UserPosition.Building2:
+                userPosition = this.transform.position + new Vector3(-0.22f, 0.0f, -0.443f);
+                tip = "二号楼";
+                break;
         }
 
         charactor.transform.position = userPosition;
@@ -92,7 +125,7 @@ public class PlatformManager : MonoBehaviour
 
     public void SetBuilding1StructureVisibility(bool visible)
     {
-        building1StructureIndicator.GetComponent<DirectionIndicator>().Active = visible;
+        //building1StructureIndicator.GetComponent<DirectionIndicator>().Active = visible;
 
         building1Structure.SetActive(visible);
 
@@ -105,7 +138,7 @@ public class PlatformManager : MonoBehaviour
 
     public void SetLibraryStructureVisibility(bool visible)
     {
-        libraryStructureIndicator.GetComponent<DirectionIndicator>().Active = visible;
+        //libraryStructureIndicator.GetComponent<DirectionIndicator>().Active = visible;
 
         libraryStructure.SetActive(visible);
 
@@ -154,5 +187,6 @@ public enum UserPosition
 {
     Library = 0,
     Building1,
-    Gymnastic
+    Gymnastic,
+    Building2
 };

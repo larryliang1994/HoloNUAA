@@ -18,22 +18,9 @@ public class CaptureManager : MonoBehaviour {
         Instance = this;
     }
 
-    public void StartCapture()
+    public void Capture()
     {
-        CursorManager.Instance.SetTipText("点击一下面前的建筑开始识别");
-
-        // Set up a GestureRecognizer to detect Select gestures.
-        recognizer = new GestureRecognizer();
-        recognizer.TappedEvent += (source, tapCount, ray) =>
-        {
-            CursorManager.Instance.SetTipText("正在识别...");
-
-            Debug.Log("Tap");
-
-            ImageMatchManager.Instance.StartMatching("/假装是一个路径/hahah.jpg");
-            //PhotoCapture.CreateAsync(false, OnPhotoCaptureCreated);
-        };
-        recognizer.StartCapturingGestures();
+        PhotoCapture.CreateAsync(false, OnPhotoCaptureCreated);
     }
 
     void OnPhotoCaptureCreated(PhotoCapture captureObject)
@@ -98,7 +85,7 @@ public class CaptureManager : MonoBehaviour {
             Debug.Log("Saved Photo to disk!");
             photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
 
-            ImageMatchManager.Instance.StartMatching(filePath);
+            ImageMatchManager.Instance.Match(filePath);
         }
         else
         {

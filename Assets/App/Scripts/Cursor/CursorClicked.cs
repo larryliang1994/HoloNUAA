@@ -20,7 +20,7 @@ public class CursorClicked : MonoBehaviour
                 MainMenuManager.Instance.SetInputDialogTitle("留言条");
                 MainMenuManager.Instance.SetInputDialogContent("请说出留言条内容...");
                 MainMenuManager.Instance.SetInputDialogVisibility(true);
-                //startDictation();
+                startDictation();
                 break;
 
             case "MenuItem_Platform":
@@ -33,7 +33,7 @@ public class CursorClicked : MonoBehaviour
                 MainMenuManager.Instance.SetInputDialogTitle("查找图书");
                 MainMenuManager.Instance.SetInputDialogContent("请说出图书编号...");
                 MainMenuManager.Instance.SetInputDialogVisibility(true);
-                //startDictation();
+                startDictation();
                 break;
 
             case "MenuItem_About":
@@ -46,12 +46,12 @@ public class CursorClicked : MonoBehaviour
 
             case "CancelButton_Input":
                 MainMenuManager.Instance.SetInputDialogVisibility(false);
-                //StopDictation();
+                StopDictation();
                 break;
 
             case "ConfirmButton_Input":
                 MainMenuManager.Instance.SetInputDialogVisibility(false);
-                //StopDictation();
+                StopDictation();
 
                 MainMenuManager.Instance.SetVisibility(false);
 
@@ -77,6 +77,8 @@ public class CursorClicked : MonoBehaviour
                 }
                 else
                 {
+                    StopDictation();
+
                     MainScreenManager.Instance.SetScreenTip(ScreenTipContent.HideNavigation);
 
                     string iid = MainMenuManager.Instance.GetInputDialogContent();
@@ -162,6 +164,7 @@ public class CursorClicked : MonoBehaviour
         dictationRecognizer.DictationHypothesis -= DictationRecognizer_DictationHypothesis;
         dictationRecognizer.DictationError -= DictationRecognizer_DictationError;
         dictationRecognizer.Dispose();
+        //dictationRecognizer.Stop();
 
         PhraseRecognitionSystem.Restart();
     }

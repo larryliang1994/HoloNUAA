@@ -52,10 +52,12 @@ namespace LocalJoost.HoloToolkitExtensions
                 if (maxDelta != Vector3.zero)
                 {
                     newPos = transform.position + maxDelta;
+                    
                     iTween.MoveTo(gameObject,
                         iTween.Hash("position", newPos, "time", 2.0f * maxDelta.magnitude,
                             "easetype", iTween.EaseType.easeInOutSine, "islocal", false,
                             "oncomplete", "MovingDone", "oncompletetarget", gameObject));
+                            
                     _lastMoveToLocation = newPos;
                 }
                 else

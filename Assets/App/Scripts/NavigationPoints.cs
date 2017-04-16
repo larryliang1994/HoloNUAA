@@ -82,7 +82,18 @@ public class NavigationPoints : MonoBehaviour
             // 左边
             else if (book.BookshelfNum == 1)
             {
+                // 走到左边
+                points.Add(new Vector3(-58.0f * scale, 3.5f, 29.0f * scale));
 
+                // 走到书架旁
+                points.Add(new Vector3(-58.0f * scale, 3.5f, F.z + (16 + book.DistanceCount * 2) * scale));
+
+                if (book.Direction == 1)
+                {
+                    Vector3 lastPoint = points[points.Count - 1];
+
+                    points.Add(new Vector3(lastPoint.x + 5 * scale, lastPoint.y, lastPoint.z));
+                }
             }
         }
 
